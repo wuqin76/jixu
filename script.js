@@ -247,4 +247,4 @@ if (form) {
 
 // Console welcome message
 console.log('%c👋 Välkommen till BusinessJungle!', 'color: #667eea; font-size: 20px; font-weight: bold;');
-console.log('%cBörja din resa till ekonomisk frihet idag!', 'color: #4a5568; font-size: 14px;');
+console.log('%cLämna en intresseanmälan så kontaktar vi dig.', 'color: #4a5568; font-size: 14px;');
