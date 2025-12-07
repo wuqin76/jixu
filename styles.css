@@ -327,17 +327,19 @@ body {
 
 /* Modals */
 .success-model,
-.age-warning-modal {
+.age-warning-modal,
+.register-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    backdrop-filter: blur(3px);
 }
 
 .model-content,
@@ -348,6 +350,138 @@ body {
     text-align: center;
     max-width: 400px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Register Modal Specific Styles */
+.register-modal .modal-content {
+    max-width: 500px;
+    padding: 35px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-header {
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    color: #2d3748;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    color: #718096;
+    font-size: 14px;
+}
+
+.modal-form .form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.modal-form .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.modal-form .form-group input,
+.modal-form .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.modal-form .form-group input:focus,
+.modal-form .form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.modal-form .btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-top: 10px;
+}
+
+.modal-form .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.modal-form .form-note {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modal-form .checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.modal-form .checkbox input {
+    width: auto;
+    margin-top: 3px;
+}
+
+.modal-form .checkbox label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 13px;
 }
 
 .emoji {
@@ -527,8 +661,10 @@ section {
 
 .requirements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .req-card {
@@ -895,6 +1031,12 @@ section {
     }
 }
 
+@media (max-width: 968px) {
+    .requirements-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 600px) {
     .requirements-grid {
         grid-template-columns: 1fr;
@@ -910,5 +1052,14 @@ section {
 
     .section-header h2 {
         font-size: 28px;
+    }
+
+    .modal-content {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .register-modal .modal-content {
+        padding: 25px;
     }
 }

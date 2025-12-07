@@ -132,6 +132,51 @@
         </div>
     </div>
 
+    <!-- Register Modal -->
+    <div class="register-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRegisterModal()">×</button>
+            <div class="modal-header">
+                <h2>🚀 Börja Idag</h2>
+                <p>Lämna din intresseanmälan och börja med distansuppdrag</p>
+            </div>
+            <form class="modal-form" id="modalSignupForm">
+                <div class="form-group">
+                    <label for="modal-fullname">Fullständigt Namn*</label>
+                    <input type="text" id="modal-fullname" name="fullname" required
+                        placeholder="Ange ditt fullständiga namn">
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-phone">Telefonnummer*</label>
+                    <input type="tel" id="modal-phone" name="phone" required placeholder="+46 123 456 789">
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-age">Ålder*</label>
+                    <select id="modal-age" name="age" required>
+                        <option value="">Välj</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46+">46+</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="modal-terms" name="terms" required>
+                    <label for="modal-terms">Jag accepterar Användarvillkoren & Sekretesspolicy</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Skicka intresseanmälan</button>
+
+                <p class="form-note">
+                    <span>🔒</span> Dina uppgifter är säkra och skyddade
+                </p>
+            </form>
+        </div>
+    </div>
+
     <!-- Work Paths Section -->
     <section class="work-paths">
         <div class="container">

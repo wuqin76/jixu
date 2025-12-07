@@ -65,40 +65,44 @@ faqItems.forEach(item => {
     });
 });
 
-// Register button click handler
+// Register button click handler - Open modal
 const registerBtn = document.querySelector('.btn-register');
 if (registerBtn) {
     registerBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        // Scroll to form
-        document.getElementById('signupForm').scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        // Focus on first input
-        setTimeout(() => {
-            document.getElementById('fullname').focus();
-        }, 500);
+        openRegisterModal();
     });
 }
 
-// Secondary button click handlers
+// Open Register Modal function
+function openRegisterModal() {
+    const modal = document.querySelector('.register-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('modal-fullname')?.focus();
+        }, 100);
+    }
+}
+
+// Close Register Modal function
+function closeRegisterModal() {
+    const modal = document.querySelector('.register-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.getElementById('modalSignupForm')?.reset();
+    }
+}
+
+// Secondary button click handlers - Open modal
 const secondaryBtn = document.querySelector('.info-container .btn-secondary');
 if (secondaryBtn) {
     secondaryBtn.addEventListener('click', () => {
-        // Scroll to form
-        document.getElementById('signupForm').scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        // Focus on first input
-        setTimeout(() => {
-            document.getElementById('fullname').focus();
-        }, 500);
+        openRegisterModal();
     });
-}// Path selection buttons
+}
+
+// Path selection buttons
 const pathButtons = document.querySelectorAll('.btn-path');
 pathButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -118,22 +122,61 @@ pathButtons.forEach(btn => {
     });
 });
 
-// Urgent button
+// Urgent button - Open modal
 const urgentBtn = document.querySelector('.btn-urgent');
 if (urgentBtn) {
     urgentBtn.addEventListener('click', () => {
-        // Scroll to form
-        document.getElementById('signupForm').scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        // Focus on first input
-        setTimeout(() => {
-            document.getElementById('fullname').focus();
-        }, 500);
+        openRegisterModal();
     });
 }
+
+// Modal Form Submission
+document.getElementById('modalSignupForm')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const fullname = document.getElementById('modal-fullname').value;
+    const phone = document.getElementById('modal-phone').value;
+    const age = document.getElementById('modal-age').value;
+    const terms = document.getElementById('modal-terms').checked;
+
+    // Validate age
+    if (age === '') {
+        alert('Vänligen välj din ålder.');
+        return;
+    }
+
+    // Validate terms
+    if (!terms) {
+        alert('Du måste acceptera användarvillkoren för att fortsätta.');
+        return;
+    }
+
+    // Save user data to localStorage
+    const userData = {
+        fullname: fullname,
+        phone: phone,
+        age: age,
+        timestamp: new Date().toISOString(),
+        id: Date.now()
+    };
+
+    // Get existing users or initialize empty array
+    let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    users.push(userData);
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+    // Close register modal
+    closeRegisterModal();
+
+    // Show success modal
+    const successModal = document.querySelector('.success-model');
+    successModal.style.display = 'flex';
+
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+        successModal.style.display = 'none';
+    }, 4000);
+});
 
 // Close modals when clicking outside
 document.querySelector('.success-model')?.addEventListener('click', function (e) {
@@ -145,6 +188,19 @@ document.querySelector('.success-model')?.addEventListener('click', function (e)
 document.querySelector('.age-warning-modal')?.addEventListener('click', function (e) {
     if (e.target === this) {
         this.style.display = 'none';
+    }
+});
+
+document.querySelector('.register-modal')?.addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeRegisterModal();
+    }
+});
+
+// Close modal on ESC key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeRegisterModal();
     }
 });
 

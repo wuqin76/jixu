@@ -1,0 +1,16 @@
+{
+    "http.proxy": "http://127.0.0.1:7890",
+    "http.proxyStrictSSL": false,
+    "http.proxySupport": "on",
+    
+    // 以下可能也需要
+    "github.gitProtocol": "https",
+    "git.proxy": "http://127.0.0.1:7890",
+    "git.sslVerify": false,
+    
+    // 排除本地地址
+    "http.proxyExcludeDomains": [
+        "localhost",
+        "127.0.0.1"
+    ]
+}
